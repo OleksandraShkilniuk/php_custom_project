@@ -1,12 +1,13 @@
 <?php
 
 namespace app\Controllers;
+use core\Viewer;
 
 class HomeController
 {
     public function index() :void
     {
-        include './../../views/home/index.php';
+        (new Viewer('home.index', []))->render();
 
     }
 }
