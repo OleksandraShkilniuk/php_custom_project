@@ -33,13 +33,14 @@ class PollTypeController
 
     public function store()
     {
-//        CHECK IT
         $data = [
             'name' => isset($_POST['name']) ? trim($_POST['name']) : null,
+            'status' => isset($_POST['status']) ? trim($_POST['status']) : null,
         ];
 
         $rules = [
             'name'=>['required', 'min3', 'max255'],
+            'status'=>['required']
         ];
 
         if(!Validator::make($rules, $data)->validate()){
