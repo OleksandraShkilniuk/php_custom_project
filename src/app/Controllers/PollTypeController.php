@@ -31,7 +31,7 @@ class PollTypeController
 
     }
 
-    public function store()
+    public function store() :void
     {
         $data = [
             'name' => isset($_POST['name']) ? trim($_POST['name']) : null,
@@ -42,10 +42,11 @@ class PollTypeController
             'name'=>['required', 'min3', 'max255'],
             'status'=>['required']
         ];
+        //TODO: ПРИБРАТИ ПОТІМ
+        if(!empty(Validator::make($rules, $data)->validate())){
 
-        if(!Validator::make($rules, $data)->validate()){
-            header('Location:' . '/poll-types/create');
-            exit();
+//            header('Location:' . '/poll-types/create');
+//            exit();
         }
         PollType::make()->fill($data)->create();
 
