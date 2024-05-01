@@ -42,11 +42,13 @@ class PollTypeController
             'name'=>['required', 'min3', 'max255'],
             'status'=>['required']
         ];
-        //TODO: ПРИБРАТИ ПОТІМ
-        if(!empty(Validator::make($rules, $data)->validate())){
+        $validator = Validator::make($rules, $data);
 
-//            header('Location:' . '/poll-types/create');
-//            exit();
+        if(!$validator->validate()){
+            $errors = $validator->errors;
+
+            require __DIR__ . '/./../../views/poll-types/create.php';
+            exit();
         }
         PollType::make()->fill($data)->create();
 

@@ -1,3 +1,20 @@
+
+<?php
+function renderErrors($fieldName, $errors)
+{
+    if(isset($errors[$fieldName])) {
+        echo '<div class="invalid-feedback">';
+        foreach($errors[$fieldName] as $error) {
+            // Extract the failed validation rule from the error message
+            $errorMessageParts = explode(' failed ', $error);
+            $failedRule = $errorMessageParts[1];
+            echo ucfirst($failedRule) . '<br>';
+        }
+        echo '</div>';
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -24,24 +41,12 @@
                 <div class="col-md-4">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control" id="name" name="name">
-                    <?php if(isset($errors['name'])): ?>
-                        <div class="invalid-feedback">
-                            <?php foreach($errors['name'] as $error): ?>
-                                <?php echo ucfirst($error); ?><br>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php endif; ?>
+                    <?php renderErrors('name', $errors); ?>
                 </div>
                 <div class="col-md-4">
                     <label for="status" class="form-label">Status(draft or published)</label>
                     <input type="text" class="form-control" id="status" name="status">
-                    <?php if(isset($errors['status'])): ?>
-                        <div class="invalid-feedback">
-                            <?php foreach($errors['status'] as $error): ?>
-                                <?php echo ucfirst($error); ?><br>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php endif; ?>
+                    <?php renderErrors('name', $errors); ?>
                 </div>
                 <div class="row my-3">
                     <div class="col">
