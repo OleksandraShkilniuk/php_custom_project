@@ -48,6 +48,7 @@ class Validator
             'required' =>fn($value) =>empty($value),
             'min3' =>fn($value) => mb_strlen($value)<3,
             'max255' => fn($value) =>mb_strlen($value)>255,
+            'isDraft' => fn($value) => $value !== 'draft',
         ];
     }
 

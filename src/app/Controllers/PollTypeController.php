@@ -40,7 +40,7 @@ class PollTypeController
 
         $rules = [
             'name'=>['required', 'min3', 'max255'],
-            'status'=>['required']
+            'status'=>['required', 'isDraft']
         ];
         $validator = Validator::make($rules, $data);
 
