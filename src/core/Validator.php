@@ -38,7 +38,6 @@ class Validator
                 }
             }
 
-            var_dump($this->errors);
         }
         return empty($this->errors);
     }

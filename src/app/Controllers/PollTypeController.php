@@ -46,7 +46,7 @@ class PollTypeController
 
         if(!$validator->validate()){
             $errors = $validator->errors;
-
+            var_dump($errors);
             require __DIR__ . '/./../../views/poll-types/create.php';
             exit();
         }

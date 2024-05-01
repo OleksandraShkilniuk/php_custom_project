@@ -1,17 +1,11 @@
-
 <?php
-function renderErrors($fieldName, $errors)
-{
-    if(isset($errors[$fieldName])) {
-        echo '<div class="invalid-feedback">';
-        foreach($errors[$fieldName] as $error) {
-            // Extract the failed validation rule from the error message
-            $errorMessageParts = explode(' failed ', $error);
-            $failedRule = $errorMessageParts[1];
-            echo ucfirst($failedRule) . '<br>';
-        }
-        echo '</div>';
-    }
+// Check if $errors array is not empty
+if (!empty($errors)) {
+    //Add the 'is-invalid' class to the form-control class attribute
+    $formControlClass = 'form-control is-invalid';
+} else {
+    // Use the default 'form-control' class attribute
+    $formControlClass = 'form-control';
 }
 ?>
 
@@ -40,13 +34,23 @@ function renderErrors($fieldName, $errors)
             <form class="row g-3 needs-validation" method="post" action="/poll-types/store">
                 <div class="col-md-4">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" name="name">
-                    <?php renderErrors('name', $errors); ?>
+                    <input type="text" id="name" name="name"
+                           class="<?php echo $formControlClass; ?>">
+                    <?php foreach ($errors as $error): ?>
+                    <?php if (strstr($error, 'name')): ?>
+                        <div class="invalid-feedback"><?php echo ucfirst($error); ?></div>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
                 <div class="col-md-4">
                     <label for="status" class="form-label">Status(draft or published)</label>
-                    <input type="text" class="form-control" id="status" name="status">
-                    <?php renderErrors('name', $errors); ?>
+                    <input type="text" id="status" name="status"
+                           class="<?php echo $formControlClass; ?>">
+                    <?php foreach ($errors as $error): ?>
+                    <?php if (strstr($error, 'status')): ?>
+                        <div class="invalid-feedback"><?php echo ucfirst($error); ?></div>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
                 <div class="row my-3">
                     <div class="col">
