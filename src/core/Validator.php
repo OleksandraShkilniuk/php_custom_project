@@ -34,6 +34,7 @@ class Validator
 
                 if(array_key_exists($rule, $handlers) &&$handlers[$rule]($value))
                 {
+
                     $this->errors[] = "$fieldKey failed $rule validation";
                 }
             }

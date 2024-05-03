@@ -45,7 +45,7 @@ class PollTypeController
         $validator = Validator::make($rules, $data);
 
         if(!$validator->validate()){
-            $errors = $validator->errors;
+            $errors = $validator->errors??[];
             var_dump($errors);
             require __DIR__ . '/./../../views/poll-types/create.php';
             exit();

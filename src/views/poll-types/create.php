@@ -36,21 +36,26 @@ if (!empty($errors)) {
                     <label for="name" class="form-label">Name</label>
                     <input type="text" id="name" name="name"
                            class="<?php echo $formControlClass; ?>">
+                    <?php if (isset($errors)): ?>
                     <?php foreach ($errors as $error): ?>
                     <?php if (strstr($error, 'name')): ?>
-                        <div class="invalid-feedback"><?php echo ucfirst($error); ?></div>
+                        <div class="invalid-feedback"><?php echo (isset($error))?ucfirst($error) : ''; ?></div>
                     <?php endif; ?>
                     <?php endforeach; ?>
+                    <?php endif; ?>
+
                 </div>
                 <div class="col-md-4">
                     <label for="status" class="form-label">Status(draft or published)</label>
                     <input type="text" id="status" name="status"
                            class="<?php echo $formControlClass; ?>">
+                    <?php if (isset($errors)): ?>
                     <?php foreach ($errors as $error): ?>
                     <?php if (strstr($error, 'status')): ?>
-                        <div class="invalid-feedback"><?php echo ucfirst($error); ?></div>
+                        <div class="invalid-feedback"><?php echo (isset($error))?ucfirst($error) : ''; ?></div>
                     <?php endif; ?>
                     <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
                 <div class="row my-3">
                     <div class="col">
