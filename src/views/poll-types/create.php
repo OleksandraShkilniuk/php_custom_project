@@ -1,13 +1,3 @@
-<?php
-// Check if $errors array is not empty
-if (!empty($errors)) {
-    //Add the 'is-invalid' class to the form-control class attribute
-    $formControlClass = 'form-control is-invalid';
-} else {
-    // Use the default 'form-control' class attribute
-    $formControlClass = 'form-control';
-}
-?>
 
 <!doctype html>
 <html lang="en">
@@ -17,7 +7,8 @@ if (!empty($errors)) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
@@ -35,27 +26,15 @@ if (!empty($errors)) {
                 <div class="col-md-4">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" id="name" name="name"
-                           class="<?php echo $formControlClass; ?>">
-                    <?php if (isset($errors)): ?>
-                    <?php foreach ($errors as $error): ?>
-                    <?php if (strstr($error, 'name')): ?>
-                        <div class="invalid-feedback"><?php echo (isset($error))?ucfirst($error) : ''; ?></div>
-                    <?php endif; ?>
-                    <?php endforeach; ?>
+                           class="form-control <?php echo isset($_SESSION['errors']['name']) ? 'is-invalid' : ''; ?>"
+                           value="<?php echo $_SESSION['old']['name'] ?? '' ?>">
+
+
+                    <?php if (isset($_SESSION['errors']['name'])): ?>
+                        <div class="invalid-feedback"><?php echo $_SESSION['errors']['name']; ?></div>
+
                     <?php endif; ?>
 
-                </div>
-                <div class="col-md-4">
-                    <label for="status" class="form-label">Status(draft or published)</label>
-                    <input type="text" id="status" name="status"
-                           class="<?php echo $formControlClass; ?>">
-                    <?php if (isset($errors)): ?>
-                    <?php foreach ($errors as $error): ?>
-                    <?php if (strstr($error, 'status')): ?>
-                        <div class="invalid-feedback"><?php echo (isset($error))?ucfirst($error) : ''; ?></div>
-                    <?php endif; ?>
-                    <?php endforeach; ?>
-                    <?php endif; ?>
                 </div>
                 <div class="row my-3">
                     <div class="col">
@@ -69,3 +48,9 @@ if (!empty($errors)) {
 </div>
 </body>
 </html>
+
+<?php
+
+
+session_destroy();
+?>

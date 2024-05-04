@@ -42,7 +42,7 @@ class PollType
 
     public function create() :bool
     {
-        $stmt = PDO::init()->prepare("INSERT INTO poll_types (name, status) VALUES (:name, :status)");
+        $stmt = PDO::init()->prepare("INSERT INTO poll_types (name) VALUES (:name)");
 
         return $stmt->execute($this->attributes);
     }

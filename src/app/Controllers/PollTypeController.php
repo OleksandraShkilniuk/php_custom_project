@@ -35,19 +35,18 @@ class PollTypeController
     {
         $data = [
             'name' => isset($_POST['name']) ? trim($_POST['name']) : null,
-            'status' => isset($_POST['status']) ? trim($_POST['status']) : null,
+
         ];
 
+        $_SESSION['old'] = $data;
+
         $rules = [
-            'name'=>['required', 'min3', 'max255'],
-            'status'=>['required', 'isDraft']
+            'name'=>['required', 'min3', 'max255',],
         ];
         $validator = Validator::make($rules, $data);
 
         if(!$validator->validate()){
-            $errors = $validator->errors??[];
-            var_dump($errors);
-            require __DIR__ . '/./../../views/poll-types/create.php';
+            header('Location:' . '/poll-types/create');
             exit();
         }
         PollType::make()->fill($data)->create();
