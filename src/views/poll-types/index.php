@@ -25,6 +25,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,7 @@
                         <span class="badge text-bg-success"><?php echo $polltype->attributes['status'] ?></span>
                         <?php endif; ?>
                     </td>
+                    <td><a  href="/poll-types/edit?id=<?= $polltype->attributes['id']?>">Edit</a></td>
 
                 </tr>
                 <?php endforeach;?>

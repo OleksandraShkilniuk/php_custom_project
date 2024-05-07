@@ -18,6 +18,8 @@ class PollType
     }
 
 //    static methods
+
+
     public static function all(): array
     {
         return array_map(
@@ -47,8 +49,11 @@ class PollType
         return $stmt->execute($this->attributes);
     }
 
-    public function update() :void
+    public function update() :bool
     {
+        $stmt = PDO::init()->prepare("UPDATE poll_types SET name=:name WHERE id=:id");
+
+        return $stmt->execute($this->attributes);
 
     }
 

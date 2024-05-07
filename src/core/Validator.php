@@ -33,7 +33,7 @@ class Validator
 
                 if ($handler['validator']($value)) {
                     $message = $handler['messageRender']($fieldKey);
-                    
+
                     $_SESSION['errors'] = [
                         $fieldKey => $message
                     ];
